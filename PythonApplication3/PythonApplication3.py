@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from helpers import * 
 from graphFixer import * 
 from graphNetwork import * 
+from toUnweighed import * 
 
 # The code is in file is chaotic since it's mostly been used to 
 # fin errors in the helper functions
@@ -27,15 +28,16 @@ time= 10
 
 # for testing with Kollmorgens graph
 
-Gderp = graphNetworkFromFile() # kollmorgens network
+Gderp = graphNetworkFromFile(False) # kollmorgens network
 GderpNodes=list(Gderp.nodes)   # nodes of kollmorgens network
 GderpEdges=list(Gderp.edges)   # edges of kollmorgens network
 
-Gorg = graphNetworkFromFile() # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
+Gorg = graphNetworkFromFile(False) # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
 
 Gderp = addTimeDimension(Gderp,GderpNodes,GderpEdges,100)
+tst=weightToUnweight(Gorg)
 
-resA1 =  throughTimeAndSpace(Gderp,Gorg,10060,58,100)
+resA1 =  throughTimeAndSpace(Gderp,Gorg,43,329,100)
 print resA1
 Gderp=reserveAndRemove(Gderp,resA1)
 
@@ -92,6 +94,3 @@ print resA3
 
 # ta bort de noder som är reserverade, 
 # gör sedan a* med dem borttagna!	
-
-
-

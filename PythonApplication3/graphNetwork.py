@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import random
 
-def graphNetworkFromFile():
+def graphNetworkFromFile(plot):
 
 	G=nx.DiGraph() # Create a graph
 	gDict ={} # A dictionary of nodes is needed (hashmap)
@@ -25,16 +25,16 @@ def graphNetworkFromFile():
 
 
 
+	if plot == True:
+		# Plotting
+		plt.plot() # Create a plot
+		#nx.draw(G, with_labels=True, font_weight='bold',node_size=10) # Some arguments that might be handy
+		nx.draw(G, pos=gDict,node_size=10)  # Draws all nodes and edges at correct x-y-position
 
-	# Plotting
-	plt.plot() # Create a plot
-	#nx.draw(G, with_labels=True, font_weight='bold',node_size=10) # Some arguments that might be handy
-	nx.draw(G, pos=gDict,node_size=10)  # Draws all nodes and edges at correct x-y-position
+		# THis draws the edges of the graph WITH the weights. This can be removed from the argument list
+		#edge_labels = nx.draw_networkx_edge_labels(G, pos=gDict, edge_labels=edgeLabels,label_pos=0.5,font_size=6)
 
-	# THis draws the edges of the graph WITH the weights. This can be removed from the argument list
-	#edge_labels = nx.draw_networkx_edge_labels(G, pos=gDict, edge_labels=edgeLabels,label_pos=0.5,font_size=6)
-
-	plt.show() # Need this to see a plot on screen
+		plt.show() # Need this to see a plot on screen
 
 	# Create 10 orders in form of a list of node
 	orderList = [] # empty orderList
