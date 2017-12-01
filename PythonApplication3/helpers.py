@@ -17,8 +17,9 @@ def plotGraph(graph):
 # creates a route for the selected agent in the time expanded graph. 
 def throughTimeAndSpace(graph,originalGraph,start,end,timesteps):
 	
-	minsteps=len(nx.astar_path(originalGraph,str(start),str(end))) # used to find a shortcut
+	#minsteps=len(nx.astar_path(originalGraph,str(start),str(end))) # used to find a shortcut
 	# looks at the shortest path for the original graph then stores the length of this and uses this as starting point for the pathfinding in time domain
+	minsteps = 3700
 	print nx.astar_path(originalGraph,str(start),str(end)) # prints shortest path for original graph, used for debuggin
 	print minsteps # prints number of steps, used for debuggin 
 	print "lengt of path:"

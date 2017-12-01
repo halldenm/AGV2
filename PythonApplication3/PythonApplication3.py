@@ -16,10 +16,13 @@ nodes_of_graph = ['1','2','3','4','5','6']
 #nodes_of_graph[0].append('.1')
 G.add_nodes_from(nodes_of_graph)
 edges = [('1','2'),('2','1'),('3','2'),('2','3'),('4','3'),('3','4'),('5','4'),('4','5'),('6','5'),('5','6'),('1','6'),('6','1'),('6','2'),('2','6'),('5','3'),('3','5')]
-G.add_edges_from(edges)
-G = addTimeSuffixes(G,nodes_of_graph,edges)
+#G.add_edges_from(edges)
+G.add_edge(1, 2, weight=2000 )
+G.add_edge(2, 3, weight=5000 )
+G.add_edge(3, 1, weight=1000 )
+#G = addTimeSuffixes(G,nodes_of_graph,edges)
 
-print nx.astar_path(G,'1.0','4.0')
+#print nx.astar_path(G,'1.0','4.0')
 
 #edges = addTimeToEdges(edges)
 # how many steps are added in the time dimension? 
@@ -27,15 +30,24 @@ time= 10
 
 
 # for testing with Kollmorgens graph
+#Gderp = graphNetworkFromFile(False) # kollmorgens network
+#GderpNodes=list(Gderp.nodes)   # nodes of kollmorgens network
+#GderpEdges=list(Gderp.edges)   # edges of kollmorgens network
 
-Gderp = graphNetworkFromFile(False) # kollmorgens network
-GderpNodes=list(Gderp.nodes)   # nodes of kollmorgens network
-GderpEdges=list(Gderp.edges)   # edges of kollmorgens network
+#Gorg = graphNetworkFromFile(False) # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
+G=weightToUnweight(G)
 
-Gorg = graphNetworkFromFile(False) # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
+plt.plot() # Create a plot
+#nx.draw(G, with_labels=True, font_weight='bold',node_size=10) # Some arguments that might be handy
+nx.draw(G, pos=gDict,node_size=10)  # Draws all nodes and edges at correct x-y-position
+
+# THis draws the edges of the graph WITH the weights. This can be removed from the argument list
+#edge_labels = nx.draw_networkx_edge_labels(G, pos=gDict, edge_labels=edgeLabels,label_pos=0.5,font_size=6)
+
+plt.show()
 
 Gderp = addTimeDimension(Gderp,GderpNodes,GderpEdges,100)
-tst=weightToUnweight(Gorg)
+
 
 resA1 =  throughTimeAndSpace(Gderp,Gorg,43,329,100)
 print resA1
