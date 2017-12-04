@@ -12,16 +12,20 @@ from toUnweighed import *
 # declare  directed graph
 
 G = nx.DiGraph()
-nodes_of_graph = ['1','2','3','4','5','6']
+nodes_of_graph = ['1','2','3','4']
 #nodes_of_graph[0].append('.1')
 G.add_nodes_from(nodes_of_graph)
-edges = [('1','2'),('2','1'),('3','2'),('2','3'),('4','3'),('3','4'),('5','4'),('4','5'),('6','5'),('5','6'),('1','6'),('6','1'),('6','2'),('2','6'),('5','3'),('3','5')]
+#edges = [('1','2' ),('2','1'),('3','2'),('2','3'),('4','3'),('3','4'),('5','4'),('4','5'),('6','5'),('5','6'),('1','6'),('6','1'),('6','2'),('2','6'),('5','3'),('3','5')]
 #G.add_edges_from(edges)
-G.add_edge(1, 2, weight=2000 )
-G.add_edge(2, 3, weight=5000 )
-G.add_edge(3, 1, weight=1000 )
+G.add_edge('1','2',weight=2000)
+G.add_edge('2', '3', weight=5000 )
+G.add_edge('3', '1', weight=1000 )
+G.add_edge('3', '4', weight=3000 )
 #G = addTimeSuffixes(G,nodes_of_graph,edges)
-
+plt.plot() # Create a plot
+#nx.draw(G, with_labels=True, font_weight='bold',node_size=10) # Some arguments that might be handy
+nx.draw(G,node_size=10)  # Draws all nodes and edges at correct x-y-position
+plt.show()
 #print nx.astar_path(G,'1.0','4.0')
 
 #edges = addTimeToEdges(edges)
@@ -36,15 +40,14 @@ time= 10
 
 #Gorg = graphNetworkFromFile(False) # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
 G=weightToUnweight(G)
-
+print getWeights(G)
 plt.plot() # Create a plot
 #nx.draw(G, with_labels=True, font_weight='bold',node_size=10) # Some arguments that might be handy
-nx.draw(G, pos=gDict,node_size=10)  # Draws all nodes and edges at correct x-y-position
-
+nx.draw(G,node_size=10)  # Draws all nodes and edges at correct x-y-position
+plt.show()
 # THis draws the edges of the graph WITH the weights. This can be removed from the argument list
 #edge_labels = nx.draw_networkx_edge_labels(G, pos=gDict, edge_labels=edgeLabels,label_pos=0.5,font_size=6)
 
-plt.show()
 
 Gderp = addTimeDimension(Gderp,GderpNodes,GderpEdges,100)
 
