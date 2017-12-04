@@ -34,25 +34,28 @@ time= 10
 
 
 # for testing with Kollmorgens graph
-#Gderp = graphNetworkFromFile(False) # kollmorgens network
-#GderpNodes=list(Gderp.nodes)   # nodes of kollmorgens network
-#GderpEdges=list(Gderp.edges)   # edges of kollmorgens network
+Gderp = graphNetworkFromFile(False) # kollmorgens network
+GderpNodes=list(Gderp.nodes)   # nodes of kollmorgens network
+GderpEdges=list(Gderp.edges)   # edges of kollmorgens network
 
-#Gorg = graphNetworkFromFile(False) # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
-G=weightToUnweight(G)
-print getWeights(G)
-plt.plot() # Create a plot
+Gorg = graphNetworkFromFile(False) # testting for seeing if time can be reduced by using a metric of minimum amout of steps needed
+#G=weightToUnweight(G)
+#print getWeights(G)
+#plt.plot() # Create a plot
 #nx.draw(G, with_labels=True, font_weight='bold',node_size=10) # Some arguments that might be handy
-nx.draw(G,node_size=10)  # Draws all nodes and edges at correct x-y-position
-plt.show()
+#nx.draw(G,node_size=10)  # Draws all nodes and edges at correct x-y-position
+#plt.show()
 # THis draws the edges of the graph WITH the weights. This can be removed from the argument list
 #edge_labels = nx.draw_networkx_edge_labels(G, pos=gDict, edge_labels=edgeLabels,label_pos=0.5,font_size=6)
 
+Gderp = weightToUnweight(Gderp)
+Gorg = weightToUnweight(Gorg)
+GderpNodes=list(Gderp.nodes)   # nodes of kollmorgens network
+GderpEdges=list(Gderp.edges)  
+Gderp = addTimeDimension(Gderp,GderpNodes,GderpEdges,500)
 
-Gderp = addTimeDimension(Gderp,GderpNodes,GderpEdges,100)
 
-
-resA1 =  throughTimeAndSpace(Gderp,Gorg,43,329,100)
+resA1 =  throughTimeAndSpace(Gderp,Gorg,43,329,500)
 print resA1
 Gderp=reserveAndRemove(Gderp,resA1)
 

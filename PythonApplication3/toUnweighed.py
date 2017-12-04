@@ -28,10 +28,11 @@ def splitEdges(graph, weights):
 
 	# loop over all edges 
 	
-	for i in range(0,len(tmp)):
+	for i in range(0,len(tmp)-1):
 		print tmp[i]
 		newEdges = [] # temp variable for the new edges
 		# for edges longer than once second. created new edges and nodes inbetween. 
+		print "i is "+ str( i)
 		if weights[i]>1000:
 
 			#remove the old edge
@@ -41,15 +42,15 @@ def splitEdges(graph, weights):
 			#graph.add_edge(tmp[i][0],str(int(tmp[i][1])+1000000))
 
 			newEdges.append((str(tmp[i][0]), str(int(tmp[i][1])+1000000)))
-			print newEdges
+			print "new edges: " + str(newEdges)
 
 			if weights[i] > 2000:
 				
 				for j in range(1,weights[i]/1000-1):
 					
-					newEdges.append((newEdges[j-1][1], str(int(newEdges[j-1][1])+1000000+int(tmp[i][1])*100000)))
-					print str(int(newEdges[j-1][1])+1000000+int(tmp[i][1])*100000)
-					print tmp[j-1][1]
+					newEdges.append((newEdges[j-1][1], str(int(newEdges[j-1][1])+1000000+int(tmp[i][1])+100000)))
+					print "new end node" + str(int(newEdges[j-1][1])+1000000+int(tmp[i][1])+100000)
+					print " new start: " + str(tmp[j-1][1])
 					#,'weight=1000'))
  					print newEdges
 
@@ -58,7 +59,7 @@ def splitEdges(graph, weights):
 				
 
 			else: 
-				newEdges.append((newEdges[i-1][1],str( tmp[i][1]))) #,'weight=1000'))
+				newEdges.append((str(int(tmp[i][1])+1000000),str( tmp[i][1]))) #,'weight=1000'))
 				print newEdges
 
 			for k in range(0,len(newEdges)):
